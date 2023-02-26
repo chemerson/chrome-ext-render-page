@@ -1,0 +1,36 @@
+{
+    "name": "Send Page to Applitools",
+    "version": "0.0.2",
+    "description": "Send the current page to the Applitools UFG",
+    "manifest_version": 3,
+    "author": "Chris Emerson",
+    "minimum_chrome_version": "99",
+    "content_scripts" : [{
+        "matches" : ["<all_urls>"],
+        "js" : ["content.js"],
+        "run_at" : "document_idle"
+    }],
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "scripting"
+      ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' data: blob: filesystem: ;"
+    },
+    "background": {
+        "service-worker": "background.js"
+    },
+    "action":{
+        "default_popup": "popup.html",
+        "default_title": "Send to Eyes"
+    },
+    "web_accessible_resources": [{ 
+        "resources": ["capture.js"], 
+        "matches": ["<all_urls>"] 
+    }],
+    "icons": { 
+        "16": "icon16.png",
+           "48": "icon64.png",
+          "128": "icon128.png" }
+}
